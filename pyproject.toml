@@ -1,0 +1,16 @@
+[project]
+name = "amle-project-bike-sharing"
+version = "0.1.0"
+requires-python = ">=3.13"
+dependencies = [
+    "catboost>=1.2.10",
+    "scikit-learn>=1.9.1",
+    "scipy>=1.18.1",
+    "seaborn>=0.13.2",
+    "xgboost>=3.4.1",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.4.0",
+]

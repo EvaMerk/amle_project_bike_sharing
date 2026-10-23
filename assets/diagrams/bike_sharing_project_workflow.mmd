@@ -1,0 +1,29 @@
+flowchart TB
+    S1["1. Goal and metric"] --> S2["2. Get the data"]
+    subgraph split["3. Train-test split"]
+        TR["Training data"]
+        TE["🔒 Test data"]
+    end
+    S2 --> TR
+    S2 --> TE
+    TR --> S4["4. Explore"] --> S5["5. Baselines"] --> FE
+    subgraph select["6 and 7. Model selection&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"]
+        FE["Feature engineering"]
+        HP["Set hyperparameters"]
+        TM["Train model(s)"]
+        CV["Calculate cross-validation score"]
+    end
+    CV --> FE
+    FE --> HP --> TM --> CV
+    CV --> S8["🔒 8. Score on the test set,<br/>analyse the errors"]
+
+    classDef general fill:#f3f3f3,stroke:#555555,color:#111111
+    classDef train fill:#d0e0e3,stroke:#555555,color:#111111
+    classDef valid fill:#c9daf8,stroke:#555555,color:#111111
+    classDef test fill:#f4cccc,stroke:#555555,color:#111111
+    class S1,S2 general
+    class TR,S4,S5,FE,HP,TM train
+    class CV valid
+    class TE,S8 test
+    style split fill:#ffffff,stroke:#555555,stroke-dasharray:5 5,color:#333333
+    style select fill:#ffffff,stroke:#555555,stroke-dasharray:5 5,color:#333333
